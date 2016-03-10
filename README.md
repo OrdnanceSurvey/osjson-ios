@@ -1,6 +1,9 @@
 # OSJSON
 Simple Objective-C wrapper for consuming JSON in Swift.
 
+[![Circle CI](https://circleci.com/gh/OrdnanceSurvey/osjson-ios.svg?style=svg)](https://circleci.com/gh/OrdnanceSurvey/osjson-ios)
+[![Coverage Status](https://coveralls.io/repos/github/OrdnanceSurvey/osjson-ios/badge.svg?branch=master)](https://coveralls.io/github/OrdnanceSurvey/osjson-ios?branch=master)
+
 ## Why?
 Having decided to write some API wrappers in Swift, we ran in to the age old
 problem that parsing JSON to a model layer is a little bit painful, with
