@@ -10,6 +10,7 @@
 		4539FDD21C9183EC004B8AE7 /* OSJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 4539FDD11C9183EC004B8AE7 /* OSJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4539FDD91C9183EC004B8AE7 /* OSJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4539FDCE1C9183EC004B8AE7 /* OSJSON.framework */; };
 		4539FDDE1C9183EC004B8AE7 /* OSJSONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4539FDDD1C9183EC004B8AE7 /* OSJSONTests.m */; };
+		4539FDE91C9184CA004B8AE7 /* OSJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 4539FDE81C9184CA004B8AE7 /* OSJSON.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		4539FDD81C9183EC004B8AE7 /* OSJSONTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSJSONTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4539FDDD1C9183EC004B8AE7 /* OSJSONTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSJSONTests.m; sourceTree = "<group>"; };
 		4539FDDF1C9183EC004B8AE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4539FDE81C9184CA004B8AE7 /* OSJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSJSON.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				4539FDD11C9183EC004B8AE7 /* OSJSON.h */,
+				4539FDE81C9184CA004B8AE7 /* OSJSON.m */,
 				4539FDD31C9183EC004B8AE7 /* Info.plist */,
 			);
 			path = OSJSON;
@@ -193,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4539FDE91C9184CA004B8AE7 /* OSJSON.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +378,7 @@
 				4539FDE41C9183EC004B8AE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4539FDE51C9183EC004B8AE7 /* Build configuration list for PBXNativeTarget "OSJSONTests" */ = {
 			isa = XCConfigurationList;
@@ -382,6 +387,7 @@
 				4539FDE71C9183EC004B8AE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

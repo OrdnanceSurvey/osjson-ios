@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+@import OSJSON;
 
 @interface OSJSONTests : XCTestCase
 
@@ -14,26 +15,69 @@
 
 @implementation OSJSONTests
 
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+- (NSData *)jsonDataFromFixture:(NSString *)fixtureString {
+    return [fixtureString dataUsingEncoding:NSUTF8StringEncoding];
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+- (void)testItIsPossibleToFetchAStringValueFromADictionary {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": \"value\" }"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    XCTAssertEqualObjects([json stringValueForKey:@"test"], @"value");
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testItIsPossibleToSetAnInitialKeyPath {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"subObject\": { \"test\": \"value\" } }"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture initialKeyPath:@"subObject"];
+    XCTAssertEqualObjects([json stringValueForKey:@"test"], @"value");
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testItIsPossibleToFetchADoubleValueFromADictionary {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": 2.1 }"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    XCTAssertEqual([json doubleValueForKey:@"test"], 2.1);
+}
+
+- (void)testItIsPossibleToFetchAnIntValueFromADictionary {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": 2 }"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    XCTAssertEqual([json intValueForKey:@"test"], 2);
+}
+
+- (void)testItIsPossibleToFetchAnArrayValueFromADictionary {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": [ 1, 2, 3 ] }"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    NSArray *testArray = @[ @1, @2, @3 ];
+    XCTAssertEqualObjects([json arrayValueForKey:@"test"], testArray);
+}
+
+- (void)testItIsPossibleToFetchAJSONValueFromADictionary {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": { \"key\": \"value\" }}"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    OSJSON *subJson = [json jsonForKey:@"test"];
+    XCTAssertEqualObjects([subJson stringValueForKey:@"key"], @"value");
+}
+
+- (void)testItIsPossibleToUseAnObjectWithARootArray {
+    NSData *fixture = [self jsonDataFromFixture:@"[ { \"key\": \"value\" } ]"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    OSJSON *first = json.array.firstObject;
+    XCTAssertEqualObjects([first stringValueForKey:@"key"], @"value");
+}
+
+- (void)testTheRootArrayIsNilIfTheRootObjectIsADictionary {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"key\": \"value\" }"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    XCTAssertNil(json.array);
+}
+
+- (void)testAMissingValueIsReturnedAsNilOrZero {
+    NSData *fixture = [self jsonDataFromFixture:@"{}"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    XCTAssertNil([json stringValueForKey:@"test"]);
+    XCTAssertNil([json jsonForKey:@"test"]);
+    XCTAssertNil([json arrayValueForKey:@"test"]);
+    XCTAssertEqual([json intValueForKey:@"test"], 0);
+    XCTAssertEqual([json doubleValueForKey:@"test"], 0);
 }
 
 @end
