@@ -11,6 +11,7 @@
 		4539FDD91C9183EC004B8AE7 /* OSJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4539FDCE1C9183EC004B8AE7 /* OSJSON.framework */; };
 		4539FDDE1C9183EC004B8AE7 /* OSJSONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4539FDDD1C9183EC004B8AE7 /* OSJSONTests.m */; };
 		4539FDE91C9184CA004B8AE7 /* OSJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 4539FDE81C9184CA004B8AE7 /* OSJSON.m */; };
+		4539FDEB1C919B85004B8AE7 /* OSJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539FDEA1C919B85004B8AE7 /* OSJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		4539FDDD1C9183EC004B8AE7 /* OSJSONTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSJSONTests.m; sourceTree = "<group>"; };
 		4539FDDF1C9183EC004B8AE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4539FDE81C9184CA004B8AE7 /* OSJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSJSON.m; sourceTree = "<group>"; };
+		4539FDEA1C919B85004B8AE7 /* OSJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				4539FDD11C9183EC004B8AE7 /* OSJSON.h */,
 				4539FDE81C9184CA004B8AE7 /* OSJSON.m */,
 				4539FDD31C9183EC004B8AE7 /* Info.plist */,
+				4539FDEA1C919B85004B8AE7 /* OSJSON.swift */,
 			);
 			path = OSJSON;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4539FDE91C9184CA004B8AE7 /* OSJSON.m in Sources */,
+				4539FDEB1C919B85004B8AE7 /* OSJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +314,7 @@
 		4539FDE31C9183EC004B8AE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -320,12 +325,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = uk.os.osjson.OSJSON;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		4539FDE41C9183EC004B8AE7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
