@@ -1,0 +1,6 @@
+coverage_service: coveralls
+ci_service: circleci
+xcodeproj: OSJSON.xcodeproj
+ignore:
+  - Carthage/*
+  - Example/*
