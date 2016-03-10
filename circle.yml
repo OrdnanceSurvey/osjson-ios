@@ -3,8 +3,7 @@ machine:
     version: "7.2"
 test:
   override:
-    - open /Applications/Xcode-7.2.app/Contents/Developer/Applications/Simulator.app
-    - set -o pipefail && xcodebuild -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'
+    - set -o pipefail && xcodebuild -destination 'platform=iOS Simulator,name=iPhone 5,OS=latest'
       -sdk iphonesimulator -scheme "OSJSON" test |
       tee $CIRCLE_ARTIFACTS/xcodebuild.log |
       xcpretty --report html --output $CIRCLE_TEST_REPORTS/results.html --report junit --output $CIRCLE_TEST_REPORTS/results.xml
