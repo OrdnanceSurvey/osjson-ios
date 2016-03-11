@@ -43,6 +43,12 @@
     XCTAssertEqual([json intValueForKey:@"test"], 2);
 }
 
+- (void)testItIsPossibleToFetchABoolValueFromADictionary {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": true }"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    XCTAssertTrue([json boolValueForKey:@"test"]);
+}
+
 - (void)testItIsPossibleToFetchAnArrayValueFromADictionary {
     NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": [ 1, 2, 3 ] }"];
     OSJSON *json = [[OSJSON alloc] initWithData:fixture];
