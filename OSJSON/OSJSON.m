@@ -21,6 +21,9 @@
 @implementation OSJSON
 
 - (instancetype)initWithObject:(NSObject *)object {
+    if (object == nil) {
+        return nil;
+    }
     if ((self = [super init])) {
         _root = object;
     }
