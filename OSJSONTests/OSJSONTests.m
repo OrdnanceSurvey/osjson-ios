@@ -50,6 +50,17 @@
     XCTAssertEqualObjects([json arrayValueForKey:@"test"], testArray);
 }
 
+- (void)testItIsPossibleToFetchAnArrayOfJsonObjects {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": [ {\"key\": \"value\"}, {}, {} ] }"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    NSArray *receivedArray = [json arrayValueForKey:@"test"];
+    for (id object in receivedArray) {
+        XCTAssert([object isKindOfClass:[OSJSON class]]);
+    }
+    OSJSON *first = receivedArray.firstObject;
+    XCTAssertEqualObjects([first stringValueForKey:@"key"], @"value");
+}
+
 - (void)testItIsPossibleToFetchAJSONValueFromADictionary {
     NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": { \"key\": \"value\" }}"];
     OSJSON *json = [[OSJSON alloc] initWithData:fixture];
