@@ -54,14 +54,24 @@
 }
 
 - (NSArray *)arrayValueForKey:(NSString *)key {
-    NSArray *value = [self.rootDictionary objectForKey:key];
-    NSMutableArray *array = [value mutableCopy];
-    [value enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
-        if ([obj isKindOfClass:[NSDictionary class]]) {
-            [array replaceObjectAtIndex:idx withObject:[[OSJSON alloc] initWithObject:obj]];
-        }
+    return [self.rootDictionary objectForKey:key];
+}
+
+- (NSArray<OSJSON *> *)jsonArrayForKey:(NSString *)key {
+    NSArray *array = [self arrayValueForKey:key];
+    NSMutableArray *results = [NSMutableArray arrayWithCapacity:array.count];
+    [array enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+        [results addObject:[[OSJSON alloc] initWithObject:obj]];
     }];
-    return array;
+    return results;
+}
+
+- (NSArray<NSNumber *> *)numberArrayForKey:(NSString *)key {
+    return [self arrayValueForKey:key];
+}
+
+- (NSArray<NSString *> *)stringArrayForKey:(NSString *)key {
+    return [self arrayValueForKey:key];
 }
 
 - (OSJSON *)jsonForKey:(NSString *)key {

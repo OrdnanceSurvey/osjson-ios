@@ -53,12 +53,26 @@
 - (void)testItIsPossibleToFetchAnArrayOfJsonObjects {
     NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": [ {\"key\": \"value\"}, {}, {} ] }"];
     OSJSON *json = [[OSJSON alloc] initWithData:fixture];
-    NSArray *receivedArray = [json arrayValueForKey:@"test"];
+    NSArray *receivedArray = [json jsonArrayForKey:@"test"];
     for (id object in receivedArray) {
         XCTAssert([object isKindOfClass:[OSJSON class]]);
     }
     OSJSON *first = receivedArray.firstObject;
     XCTAssertEqualObjects([first stringValueForKey:@"key"], @"value");
+}
+
+- (void)testItIsPossibleToFetchAnArrayOfNumbers {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": [ 1, 2, 3 ] }"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    NSArray *testArray = @[ @1, @2, @3 ];
+    XCTAssertEqualObjects([json numberArrayForKey:@"test"], testArray);
+}
+
+- (void)testItIsPossibleToFetchAStringArray {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": [ \"1\", \"2\", \"3\" ] }"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    NSArray *testArray = @[ @"1", @"2", @"3" ];
+    XCTAssertEqualObjects([json stringArrayForKey:@"test"], testArray);
 }
 
 - (void)testItIsPossibleToFetchAJSONValueFromADictionary {
