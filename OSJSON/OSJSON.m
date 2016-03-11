@@ -57,6 +57,23 @@
     return [self.rootDictionary objectForKey:key];
 }
 
+- (NSArray<OSJSON *> *)jsonArrayForKey:(NSString *)key {
+    NSArray *array = [self arrayValueForKey:key];
+    NSMutableArray *results = [NSMutableArray arrayWithCapacity:array.count];
+    [array enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+        [results addObject:[[OSJSON alloc] initWithObject:obj]];
+    }];
+    return results;
+}
+
+- (NSArray<NSNumber *> *)numberArrayForKey:(NSString *)key {
+    return [self arrayValueForKey:key];
+}
+
+- (NSArray<NSString *> *)stringArrayForKey:(NSString *)key {
+    return [self arrayValueForKey:key];
+}
+
 - (OSJSON *)jsonForKey:(NSString *)key {
     NSDictionary *dict = [self.rootDictionary objectForKey:key];
     return dict ? [[OSJSON alloc] initWithObject:dict] : nil;

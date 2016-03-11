@@ -61,11 +61,32 @@ NS_ASSUME_NONNULL_BEGIN
 - (int)intValueForKey:(NSString *)key;
 
 /**
- *  Get an array from the root dictionary
+ *  Get an array from the root dictionary. No type information, so casting required
  *
  *  @param key The key for the value
  */
 - (NSArray *_Nullable)arrayValueForKey:(NSString *)key;
+
+/**
+ *  Get an array of json objects
+ *
+ *  @param key The key for the value
+ */
+- (NSArray<OSJSON *> *_Nullable)jsonArrayForKey:(NSString *)key;
+
+/**
+ *  Get an array of string objects
+ *
+ *  @param key The key for the value
+ */
+- (NSArray<NSString *> *_Nullable)stringArrayForKey:(NSString *)key;
+
+/**
+ *  Get an array of number objects
+ *
+ *  @param key The key for the value
+ */
+- (NSArray<NSNumber *> *_Nullable)numberArrayForKey:(NSString *)key;
 
 /**
  *  Get a child dictionary as an `OSJSON` object from the root dictionary
