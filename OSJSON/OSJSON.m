@@ -53,6 +53,10 @@
     return [[self.rootDictionary objectForKey:key] intValue];
 }
 
+- (BOOL)boolValueForKey:(NSString *)key {
+    return [[self.rootDictionary objectForKey:key] boolValue];
+}
+
 - (NSArray *)arrayValueForKey:(NSString *)key {
     return [self.rootDictionary objectForKey:key];
 }
