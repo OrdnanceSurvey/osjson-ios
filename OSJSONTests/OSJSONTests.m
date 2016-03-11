@@ -111,4 +111,12 @@
     XCTAssertEqual([json doubleValueForKey:@"test"], 0);
 }
 
+- (void)testInitWithInvalidJsonDataReturnsANilOSJSON {
+    NSString *badJson = @"<!:@";
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:badJson
+                                                       options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    OSJSON *json = [[OSJSON alloc] initWithData:data];
+    XCTAssertNil(json);
+}
+
 @end
