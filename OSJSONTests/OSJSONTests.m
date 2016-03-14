@@ -118,10 +118,8 @@
 }
 
 - (void)testInitWithInvalidJsonDataReturnsANilOSJSON {
-    NSString *badJson = @"<!:@";
-    NSData *data = [[NSData alloc] initWithBase64EncodedString:badJson
-                                                       options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    OSJSON *json = [[OSJSON alloc] initWithData:data];
+    NSData *badJsonData = [self jsonDataFromFixture:@"<!:@"];
+    OSJSON *json = [[OSJSON alloc] initWithData:badJsonData];
     XCTAssertNil(json);
 }
 
