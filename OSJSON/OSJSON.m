@@ -65,7 +65,8 @@
 }
 
 - (NSArray *)arrayValueForKey:(NSString *)key {
-    return [self.rootDictionary objectForKey:key];
+    
+    return [NSArray os_json_safeCast:[self.rootDictionary objectForKey:key]];
 }
 
 - (NSArray<OSJSON *> *)jsonArrayForKey:(NSString *)key {
