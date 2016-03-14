@@ -54,6 +54,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (double)doubleValueForKey:(NSString *)key;
 
 /**
+ *  Get a float value from the root dictionary
+ *
+ *  @param key The key for the value
+ */
+- (float)floatValueForKey:(NSString *)key;
+
+/**
  *  Get an integer value from the root dictionary
  *
  *  @param key The key for the integer value
