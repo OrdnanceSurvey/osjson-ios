@@ -37,6 +37,12 @@
     XCTAssertEqual([json doubleValueForKey:@"test"], 2.1);
 }
 
+- (void)testItIsPossibleToFetchAFloatValueFromADictionary {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": 2.1 }"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    XCTAssertEqual([json floatValueForKey:@"test"], 2.1f);
+}
+
 - (void)testItIsPossibleToFetchAnIntValueFromADictionary {
     NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": 2 }"];
     OSJSON *json = [[OSJSON alloc] initWithData:fixture];

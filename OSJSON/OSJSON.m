@@ -52,6 +52,10 @@
     return [[self.rootDictionary objectForKey:key] doubleValue];
 }
 
+- (float)floatValueForKey:(NSString *)key {
+    return [[self.rootDictionary objectForKey:key] floatValue];
+}
+
 - (int)intValueForKey:(NSString *)key {
     return [[self.rootDictionary objectForKey:key] intValue];
 }
