@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param key The key for the integer value
  */
-- (int)intValueForKey:(NSString *)key;
+- (long)intValueForKey:(NSString *)key;
 
 /**
  *  Returns a boolean value from the root dictionary

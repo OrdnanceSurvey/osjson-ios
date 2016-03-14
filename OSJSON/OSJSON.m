@@ -56,8 +56,8 @@
     return [[self.rootDictionary objectForKey:key] floatValue];
 }
 
-- (int)intValueForKey:(NSString *)key {
-    return [[self.rootDictionary objectForKey:key] intValue];
+- (long)intValueForKey:(NSString *)key {
+    return [[self.rootDictionary objectForKey:key] longValue];
 }
 
 - (BOOL)boolValueForKey:(NSString *)key {
