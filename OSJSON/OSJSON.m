@@ -71,6 +71,9 @@
 
 - (NSArray<OSJSON *> *)jsonArrayForKey:(NSString *)key {
     NSArray *array = [self arrayValueForKey:key];
+    if (array == nil) {
+        return nil;
+    }
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:array.count];
     [array enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
         [results addObject:[[OSJSON alloc] initWithObject:obj]];
