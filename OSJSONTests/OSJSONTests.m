@@ -118,11 +118,16 @@
 }
 
 - (void)testInitWithInvalidJsonDataReturnsANilOSJSON {
-    NSString *badJson = @"<!:@";
-    NSData *data = [[NSData alloc] initWithBase64EncodedString:badJson
-                                                       options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    OSJSON *json = [[OSJSON alloc] initWithData:data];
+    NSData *badJsonData = [self jsonDataFromFixture:@"<!:@"];
+    OSJSON *json = [[OSJSON alloc] initWithData:badJsonData];
     XCTAssertNil(json);
 }
+
+- (void)testArrayForKeyReturnsNilIfNoArrayPresent {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": { \"key\": \"value\" }}"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    XCTAssertNil([json arrayValueForKey:@"test"]);
+}
+
 
 @end
