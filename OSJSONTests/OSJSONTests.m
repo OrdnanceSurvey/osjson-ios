@@ -129,5 +129,11 @@
     XCTAssertNil([json arrayValueForKey:@"test"]);
 }
 
+- (void)testJsonArrayForKeyReturnsNilIfNoArrayPresent {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": { \"key\": \"value\" }}"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    XCTAssertNil([json jsonArrayForKey:@"test"]);
+}
+
 
 @end
