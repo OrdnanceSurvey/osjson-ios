@@ -65,11 +65,15 @@
 }
 
 - (NSArray *)arrayValueForKey:(NSString *)key {
-    return [self.rootDictionary objectForKey:key];
+    
+    return [NSArray os_json_safeCast:[self.rootDictionary objectForKey:key]];
 }
 
 - (NSArray<OSJSON *> *)jsonArrayForKey:(NSString *)key {
     NSArray *array = [self arrayValueForKey:key];
+    if (array == nil) {
+        return nil;
+    }
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:array.count];
     [array enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
         [results addObject:[[OSJSON alloc] initWithObject:obj]];
