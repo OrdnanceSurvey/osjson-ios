@@ -47,6 +47,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *_Nullable)stringValueForKey:(NSString *)key;
 
 /**
+ *  Get an `NSData` value from the root dictionary.
+ *  Assumed the value in the dictionary is a base64 encoded string
+
+ */
+- (NSData *_Nullable)dataValueForKey:(NSString *)key;
+
+/**
  *  Get a double value from the root dictionary
  *
  *  @param key The key for the value

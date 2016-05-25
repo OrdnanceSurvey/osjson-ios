@@ -135,5 +135,14 @@
     XCTAssertNil([json jsonArrayForKey:@"test"]);
 }
 
+- (void)testItIsPossibleToDecodeADataBlob {
+    NSData *testData = [@"test string" dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *base64 = [testData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSData *fixture = [self jsonDataFromFixture:[NSString stringWithFormat:@"{ \"test\": \"%@\" }", base64]];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    NSData *receivedData = [json dataValueForKey:@"test"];
+    NSString *receivedString = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(@"test string", receivedString);
+}
 
 @end

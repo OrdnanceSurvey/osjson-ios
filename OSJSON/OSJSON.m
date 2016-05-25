@@ -48,6 +48,11 @@
     return [self.rootDictionary objectForKey:key];
 }
 
+- (NSData *)dataValueForKey:(NSString *)key {
+    NSString *value = [self stringValueForKey:key];
+    return [[NSData alloc] initWithBase64EncodedString:value options:0];
+}
+
 - (double)doubleValueForKey:(NSString *)key {
     return [[self.rootDictionary objectForKey:key] doubleValue];
 }
@@ -65,7 +70,7 @@
 }
 
 - (NSArray *)arrayValueForKey:(NSString *)key {
-    
+
     return [NSArray os_json_safeCast:[self.rootDictionary objectForKey:key]];
 }
 
