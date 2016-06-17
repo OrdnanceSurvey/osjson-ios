@@ -50,7 +50,7 @@
 
 - (NSData *)dataValueForKey:(NSString *)key {
     NSString *value = [self stringValueForKey:key];
-    return [[NSData alloc] initWithBase64EncodedString:value options:0];
+    return [[NSData alloc] initWithBase64EncodedString:value options:NSDataBase64DecodingIgnoreUnknownCharacters];
 }
 
 - (double)doubleValueForKey:(NSString *)key {
