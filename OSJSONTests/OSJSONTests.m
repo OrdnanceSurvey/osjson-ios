@@ -153,4 +153,10 @@
     XCTAssertNotNil(receivedData);
 }
 
+- (void)testNSNullIsReturnedAsNil {
+    NSData *fixture = [self jsonDataFromFixture:@"{ \"test\": null }"];
+    OSJSON *json = [[OSJSON alloc] initWithData:fixture];
+    XCTAssertNil([json stringValueForKey:@"test"]);
+}
+
 @end

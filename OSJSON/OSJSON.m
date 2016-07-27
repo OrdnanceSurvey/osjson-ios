@@ -44,8 +44,16 @@
     return [NSDictionary os_json_safeCast:self.root];
 }
 
+- (id)nonNullValueForKey:(NSString *)key {
+    id value = [self.rootDictionary objectForKey:key];
+    if ([value isKindOfClass:NSNull.class]) {
+        return nil;
+    }
+    return value;
+}
+
 - (NSString *)stringValueForKey:(NSString *)key {
-    return [self.rootDictionary objectForKey:key];
+    return [self nonNullValueForKey:key];
 }
 
 - (NSData *)dataValueForKey:(NSString *)key {
@@ -54,19 +62,19 @@
 }
 
 - (double)doubleValueForKey:(NSString *)key {
-    return [[self.rootDictionary objectForKey:key] doubleValue];
+    return [[self nonNullValueForKey:key] doubleValue];
 }
 
 - (float)floatValueForKey:(NSString *)key {
-    return [[self.rootDictionary objectForKey:key] floatValue];
+    return [[self nonNullValueForKey:key] floatValue];
 }
 
 - (long)intValueForKey:(NSString *)key {
-    return [[self.rootDictionary objectForKey:key] longValue];
+    return [[self nonNullValueForKey:key] longValue];
 }
 
 - (BOOL)boolValueForKey:(NSString *)key {
-    return [[self.rootDictionary objectForKey:key] boolValue];
+    return [[self nonNullValueForKey:key] boolValue];
 }
 
 - (NSArray *)arrayValueForKey:(NSString *)key {
@@ -95,7 +103,7 @@
 }
 
 - (OSJSON *)jsonForKey:(NSString *)key {
-    NSDictionary *dict = [self.rootDictionary objectForKey:key];
+    NSDictionary *dict = [self nonNullValueForKey:key];
     return dict ? [[OSJSON alloc] initWithObject:dict] : nil;
 }
 
