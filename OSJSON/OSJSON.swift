@@ -14,7 +14,7 @@ public typealias JSON = OSJSON
 /**
  *  Represents an entity that can be decoded from a JSON object
  */
-public protocol Decodable {
+public protocol OSDecodable {
 
     /**
      Optional initialiser that can create an entity from the passed in JSON
